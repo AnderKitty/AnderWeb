@@ -1,0 +1,245 @@
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--primary-bg);
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 40px;
+    margin: 2.0rem auto;
+    flex: 1;
+
+}
+
+@keyframes holographicEffect {
+    0% {
+        background-position: 0% 0%;
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        background-position: 100% 100%;
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        background-position: 0% 0%;
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* Estilos de la tarjeta */
+.card {
+    position: relative;
+    height: auto;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 27%;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ff9ab9, #f3ffb3, #84e4ec, #b9b1dd, #dbc1dd);
+    background-size: 100% 100%;
+    border-radius: 1rem;
+}
+
+.card:hover::before {
+    animation: holographicEffect 1s linear infinite;
+}
+
+.card:hover {
+    transform: rotateY(calc(10deg * var(--ratio-x))) rotateX(calc(-10deg * var(--ratio-y))); /* Reduced from 20deg to 10deg */
+    --correction: 0%;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    max-width: 20rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card.small-img img {
+    max-width: 15rem;
+}
+
+.card h2 {
+    margin: 1.5rem 0; 
+    font-size: 1.2em; 
+    color: #333;
+    position: relative;
+    z-index: 1;
+}
+
+.card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.1em;
+    line-height: 1.4;
+    color: #555;
+    position: relative;
+    z-index: 1;
+}
+
+.card p {
+    color: #464646;
+    font-size: 1em;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.card-main {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.music-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1); /* subtle background */
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.music-section h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.spotify-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 152px;
+    padding: 0 20px;
+}
+
+iframe {
+    max-width: 50rem;
+    width: 100%;
+    height: 152px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.social-section {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 40px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+.social-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s, background 0.2s;
+}
+.social-section h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.social-link img {
+    width: 30px;
+    height: 30px;
+}
+
+.social-link span {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    opacity: 3;
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.social-link:hover span {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}

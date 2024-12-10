@@ -1,0 +1,165 @@
+/* Media Queries para hacer la web responsive */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        margin: 2.0rem auto;
+    }
+
+    .card, .card-main {
+        width: 80%;
+        margin-bottom: 2rem;
+    }
+
+    .card img {
+        max-width: 100%;
+    }
+
+    .card h2 {
+        font-size: 1.3em;
+    }
+
+    .card h3 {
+        font-size: 1.1em;
+    }
+
+    .card p {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 2.0rem auto;
+    }
+
+    .card, .card-main {
+        width: 90%;
+        margin-bottom: 2rem;
+    }
+
+    .card img {
+        max-width: 100%;
+    }
+
+    .card h2 {
+        font-size: 1.2em;
+    }
+
+    .card h3 {
+        font-size: 1em;
+    }
+
+    .card p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 15px;
+    }
+
+    .card h2 {
+        font-size: 1em;
+    }
+
+    .card h3 {
+        font-size: 0.9em;
+    }
+
+    .card p {
+        font-size: 0.8em;
+    }
+}
+
+/* Media Queries para pantallas de alta resolución */
+@media (min-width: 1440px) {
+    .container {
+        width: 70%;
+        margin: 2.0rem auto;
+    }
+
+    .card {
+        width: 30%; /* Ajuste en pantallas más grandes */
+    }
+
+    .card h2 {
+        font-size: 1.7em;
+    }
+
+    .card h3 {
+        font-size: 1.4em;
+    }
+
+    .card p {
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        width: 60%;
+        margin: 2.0rem auto;
+    }
+
+    .card {
+        width: 28%; /* Ajuste en pantallas más grandes */
+        padding: 2.5rem; /* Aumenta el padding para espacios más grandes */
+    }
+
+    .card h2 {
+        font-size: 2em;
+    }
+
+    .card h3 {
+        font-size: 1.6em;
+    }
+
+    .card p {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        width: 95%;
+        padding: 0 10px;
+        margin: 2.0rem auto;
+    }
+
+    .card {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .card h2 {
+        font-size: 0.9em;
+    }
+
+    .card h3 {
+        font-size: 0.8em;
+    }
+
+    .card p {
+        font-size: 0.75em;
+    }
+}
+
+@media only screen and (min-resolution: 2dppx) {
+    .card h2, .card h3, .card p {
+        font-size: 1.1em;
+    }
+    .container {
+        width: 95%;
+        padding: 0 10px;
+        margin: 2.0rem auto;
+    }
+    .card {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}

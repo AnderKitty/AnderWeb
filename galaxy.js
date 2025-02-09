@@ -150,6 +150,57 @@ function createStars() {
 const stars = createStars();
 scene.add(stars);
 
+// Crear planeta low poly
+function createPlanet() {
+    const planetGroup = new THREE.Group();
+    
+    // Crear el cuerpo de Saturno
+    const geometry = new THREE.IcosahedronGeometry(30, 1);
+    const material = new THREE.MeshPhongMaterial({
+        color: 0xE4B784, // Color beige-dorado más realista de Saturno
+        flatShading: true,
+        shininess: 0.5,
+        emissive: 0x996515, // Añade un sutil brillo dorado
+        emissiveIntensity: 0.2
+    });
+    const planet = new THREE.Mesh(geometry, material);
+    
+    // Crear los anillos con material que brille por ambos lados
+    const ringGeometry = new THREE.RingGeometry(45, 75, 64); // Ajustados para centrar mejor
+    const ringMaterial = new THREE.MeshBasicMaterial({
+        color: 0xC8B17C, // Color más dorado para los anillos
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.7
+    });
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    
+    // Rotar los anillos para que se vean en perspectiva
+    ring.rotation.x = Math.PI / 3;
+    
+    // Centrar mejor el planeta dentro de los anillos
+    planet.position.set(0, 0, 0);
+    ring.position.set(0, 0, 0);
+    
+    // Agrupar planeta y anillos
+    planetGroup.add(planet);
+    planetGroup.add(ring);
+    
+    // Posicionar el grupo completo
+    planetGroup.position.set(-100, -50, -100);
+    
+    return planetGroup;
+}
+
+// Agregar iluminación para el planeta
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(1, 1, 1);
+scene.add(light);
+
+// Crear y agregar planeta a la escena
+const planet = createPlanet();
+scene.add(planet);
+
 // Animación
 function animate() {
     requestAnimationFrame(animate);
@@ -182,39 +233,9 @@ function animate() {
         }
     });
 
-    stars.rotation.y += 0.0005;
-    stars.rotation.x += 0.0002;
-    renderer.render(scene, camera);
-}function animate() {
-    requestAnimationFrame(animate);
-    
-    meteors.forEach(meteor => {
-        meteor.update();
-        
-        if (meteor.positions.length > 1) {
-            const geometry = new THREE.BufferGeometry().setFromPoints(meteor.positions);
-            const colors = [];
-            
-            for (let i = 0; i < meteor.positions.length; i++) {
-                const alpha = 1 - (i / meteor.positions.length);
-                colors.push(
-                    meteor.color[0] * alpha,
-                    meteor.color[1] * alpha,
-                    meteor.color[2] * alpha
-                );
-            }
-            
-            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-            const trail = new THREE.Line(geometry, trailMaterial);
-            scene.add(trail);
-            
-            // Eliminar el trail inmediatamente después de renderizar
-            requestAnimationFrame(() => {
-                scene.remove(trail);
-                geometry.dispose();
-            });
-        }
-    });
+    // Rotar Saturno y sus anillos
+    planet.rotation.y += 0.002;
+    planet.rotation.x += 0.001;
 
     stars.rotation.y += 0.0005;
     stars.rotation.x += 0.0002;

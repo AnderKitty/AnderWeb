@@ -1,49 +1,59 @@
+\Card\index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Business Card</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anderson Silva's Business Card">
+    <title>Anderson Silva - Business Card</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="business-card">
-        <div class="banner"></div>
-        <div class="content-wrapper">
-            <div class="profile-photo">
-                <!-- Add your profile photo here -->
-                <img src="Screenshot 2025-04-03 003235.png" alt="Profile Photo">
-            </div>
-            
-            <div class="blossom blossom-1">🌸</div>
-            <div class="blossom blossom-2">🌸</div>
-            <div class="blossom blossom-3">🌸</div>
-            
-            <div class="name">Anderson Silva</div>
-            <div class="title">Student of Lidia, Utec ITR Norte</div>
-            
-            <div class="info">
-                <i>✉️</i>ander@anderkitty.com
-            </div>
-            <div class="info">
-                <i>📱</i> 099581935
-            </div>
-            <div class="info">
-                <i>📍</i>Rivera,Uruguay
-            </div>
-            
-            <div class="divider"></div>
-            
-            <div class="skills">
-                <div class="skills-title">SKILLS</div>
-                <div>
-                    <span class="skill-tag">Linux Dev</span>
-                    <span class="skill-tag">Ciberscurity Enthusiast</span>
-                    <span class="skill-tag">Junior web dev</span>
-                    <span class="skill-tag">Basic english</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <main class="business-card">
+        <div class="banner"></div>
+        <div class="content-wrapper">
+            <div class="profile-photo">
+                <!-- Corregir la ruta de la imagen y usar un nombre más apropiado -->
+                <img src="../assets/profile-photo.png" alt="Anderson Silva profile photo">
+            </div>
+            
+            <!-- Emojis con aria-hidden para accesibilidad -->
+            <div class="blossom blossom-1" aria-hidden="true">🌸</div>
+            <div class="blossom blossom-2" aria-hidden="true">🌸</div>
+            <div class="blossom blossom-3" aria-hidden="true">🌸</div>
+            
+            <h1 class="name">Anderson Silva</h1>
+            <p class="title">Student of Lidia, Utec ITR Norte</p>
+            
+            <!-- Enlaces para contacto -->
+            <a href="mailto:ander@anderkitty.com" class="info">
+                <span aria-hidden="true">✉️</span>
+                <span>ander@anderkitty.com</span>
+            </a>
+            <a href="tel:+598099581935" class="info">
+                <span aria-hidden="true">📱</span>
+                <span>099 581 935</span>
+            </a>
+            <div class="info">
+                <span aria-hidden="true">📍</span>
+                <span>Rivera, Uruguay</span>
+            </div>
+            
+            <hr class="divider" aria-hidden="true">
+            
+            <section class="skills">
+                <h2 class="skills-title">SKILLS</h2>
+                <div class="skills-container">
+                    <span class="skill-tag">Linux Dev</span>
+                    <span class="skill-tag">Cybersecurity Enthusiast</span>
+                    <span class="skill-tag">Junior Web Dev</span>
+                    <span class="skill-tag">Basic English</span>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

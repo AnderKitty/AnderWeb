@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Business Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: url('8786bd5c1b5026b9759927f82416e60787e459c9.gif') center/cover fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .business-card {
+            width: 350px;
+            background: linear-gradient(135deg, #ffd7e1, #FFA3C8);
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(255, 182, 193, 0.4);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ff9eb5;
+            backdrop-filter: blur(5px);
+            z-index: 1;
+            padding-top: 0;
+            margin-top: 20px;
+        }
+        
+        .business-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: 200px;
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .name {
+            font-size: 26px;
+            font-weight: 600;
+            color: #ff4777;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        .title {
+            font-size: 16px;
+            color: #ff6b93;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .info {
+            font-size: 14px;
+            color: #ff1755;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ffffff, transparent);
+            margin: 25px 0;
+            border: none;
+        }
+        
+        .skills {
+            margin-top: 25px;
+        }
+        
+        .skills-title {
+            font-size: 14px;
+            color: #ff4777;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #ff4777;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 5px rgba(219, 112, 147, 0.1);
+            border: 1px solid #ff9eb5;
+            backdrop-filter: blur(2px);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 71, 119, 0.3);
+        }
+        
+        .blossom {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+        
+        .blossom-1 {
+            top: 15px;
+            right: 25px;
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        .blossom-2 {
+            bottom: 20px;
+            left: 25px;
+            transform: rotate(30deg);
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        .blossom-3 {
+            top: 50%;
+            right: 15px;
+            transform: rotate(-15deg);
+            animation: floating 3.5s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0); }
+        }
+
+        .banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            border-radius: 16px 16px 0 0;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('8iltexvj.png');
+            opacity: 0.3;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 12px rgba(255, 93, 143, 0.3);
+            margin: 30px auto 15px;
+            position: relative;
+            z-index: 2;
+            background: #ffd1dc;
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-wrapper {
+            padding: 0 30px 30px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="business-card">
+        <div class="banner"></div>
+        <div class="content-wrapper">
+            <div class="profile-photo">
+                <!-- Add your profile photo here -->
+                <img src="Screenshot 2025-04-03 003235.png" alt="Profile Photo">
+            </div>
+            
+            <div class="blossom blossom-1">🌸</div>
+            <div class="blossom blossom-2">🌸</div>
+            <div class="blossom blossom-3">🌸</div>
+            
+            <div class="name">Anderson Silva</div>
+            <div class="title">Student of Lidia, Utec ITR Norte</div>
+            
+            <div class="info">
+                <i>✉️</i>ander@anderkitty.com
+            </div>
+            <div class="info">
+                <i>📱</i> 099581935
+            </div>
+            <div class="info">
+                <i>📍</i>Rivera,Uruguay
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="skills">
+                <div class="skills-title">SKILLS</div>
+                <div>
+                    <span class="skill-tag">Linux Dev</span>
+                    <span class="skill-tag">Ciberscurity Enthusiast</span>
+                    <span class="skill-tag">Junior web dev</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

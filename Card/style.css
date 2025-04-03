@@ -265,3 +265,23 @@ body {
     }
 }
 
+/* Para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    body {
+        background: url('Fondo.gif') center/cover fixed;
+    }
+    
+    .business-card {
+        width: 90%;
+        max-width: var(--card-width);
+        margin: 0 auto;
+    }
+}
+
+/* Para dispositivos con conexión lenta */
+@media (prefers-reduced-data: reduce) {
+    body {
+        background: url('Fondo.gif') center/cover fixed;
+    }
+}
+

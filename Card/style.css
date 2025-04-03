@@ -28,7 +28,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 1.25em;
+    padding: 0; /* Remove padding that was causing centering issues */
 }
 
 .business-card {
@@ -41,11 +41,11 @@ body {
     border: 1px solid var(--border-color);
     backdrop-filter: blur(5px);
     z-index: 1;
-    padding: var(--card-padding);
+    margin: 1em auto; /* Changed from margin-top to center vertically */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1.25em;
+    padding: 0; /* Remove padding here */
 }
 
 .business-card::before {
@@ -211,8 +211,8 @@ body {
 .content-wrapper {
     width: 100%;
     text-align: center;
-    padding: 0;
-    margin-top: 3.75em;
+    padding: var(--card-padding);
+    padding-top: 60px; /* Account for profile photo overlap */
 }
 
 /* Media Queries */
@@ -225,6 +225,7 @@ body {
         width: 100%;
         max-width: var(--card-width);
         padding: 1.25em;
+        margin: 0.5em auto;
     }
 
     .profile-photo {
@@ -246,8 +247,8 @@ body {
     }
 
     .content-wrapper {
-        padding: 0;
-        margin-top: 2.5em;
+        padding: 1em;
+        padding-top: 50px; /* Adjusted for smaller profile photo */
     }
 }
 
@@ -269,12 +270,13 @@ body {
 @media screen and (max-width: 768px) {
     body {
         background: url('Fondo.gif') center/cover fixed;
+        padding: 1em; /* Add minimal padding for mobile */
     }
     
     .business-card {
-        width: 90%;
+        width: 100%;
         max-width: var(--card-width);
-        margin: 0 auto;
+        margin: 0.5em auto;
     }
 }
 

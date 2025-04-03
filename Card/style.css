@@ -22,7 +22,7 @@ html {
 
 body {
     font-family: 'Quicksand', sans-serif;
-    background: url('./8786bd5c1b5026b9759927f82416e60787e459c9.gif') center/cover fixed;
+    background: url('Fondo.gif') center/cover fixed;
     display: flex;
     justify-content: center;
     align-items: center;

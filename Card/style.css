@@ -153,6 +153,18 @@ body {
     animation: floating 3.5s ease-in-out infinite;
 }
 
+.blossom-4 {
+    top: 3em;
+    left: 2em;
+    animation: floating 3.3s ease-in-out infinite;
+}
+
+.blossom-5 {
+    top: 17em;
+    left: 0.4em;
+    animation: floating 3.3s ease-in-out infinite;
+}
+
 @keyframes floating {
     0% { 
         transform: translateY(0) rotate(0); 
@@ -169,11 +181,12 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0; /* Añadido */
+    right: 0;
     width: 100%;
-    height: 5em; /* 80px */
-    border-radius: 1em 1em 0 0; /* Corregido para coincidir con business-card */
+    height: 5em;
+    border-radius: 1em 1em 0 0;
     overflow: hidden;
+
 }
 
 .banner::before {
@@ -182,6 +195,8 @@ body {
     width: 100%;
     height: 100%;
     background-image: url('8iltexvj.png');
+    background-size: cover;
+    background-position: center;
     opacity: 0.3;
 }
 
@@ -213,6 +228,27 @@ body {
     text-align: center;
     padding: var(--card-padding);
     padding-top: 60px; /* Account for profile photo overlap */
+}
+
+.about-me {
+    margin: 0.75em 0;
+}
+
+.section-title {
+    font-size: 0.87em;
+    color: var(--primary-color);
+    margin-bottom: 0.75em;
+    font-weight: 600;
+    letter-spacing: 0.063em;
+    text-transform: uppercase;
+}
+
+.about-text {
+    font-size: 1em;
+    color: #ff0044;
+    line-height: 1.6;
+    margin-bottom: 0.75em;
+    text-align: center;
 }
 
 /* Media Queries */

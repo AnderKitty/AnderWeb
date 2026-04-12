@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/microrivera/static/css/main.8441f13d.css",
+    "main.js": "/microrivera/static/js/main.956dd7f9.js",
+    "index.html": "/microrivera/index.html",
+    "main.8441f13d.css.map": "/microrivera/static/css/main.8441f13d.css.map",
+    "main.956dd7f9.js.map": "/microrivera/static/js/main.956dd7f9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8441f13d.css",
+    "static/js/main.956dd7f9.js"
+  ]
+}

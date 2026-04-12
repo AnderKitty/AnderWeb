@@ -1,0 +1,41 @@
+{
+  "summary": "Completed comprehensive testing of MICRO Rivera Bus Tracker ghost bus features. Backend MongoDB persistence and API endpoints working perfectly. Frontend UI correctly displays ghost buses with reduced opacity, 'Vistos recientemente' section, and 'Última posición conocida' banners. All core functionality verified including theme toggle, line filters, and map interactions.",
+  "backend_issues": {
+    "critical_bugs": [],
+    "flaky_endpoints": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "passed_tests": [
+    "Backend /api/buses returns activeCount and lastSeenCount fields correctly",
+    "Backend saves bus positions to MongoDB bus_positions collection",
+    "Backend returns ghost buses with isLastSeen=true when not in current API",
+    "Backend ghost bus functionality verified with test document insertion",
+    "Frontend top bar displays 'X activos + Y recientes' format correctly",
+    "Frontend bus list shows 'Vistos recientemente' section for ghost buses",
+    "Ghost bus markers display with reduced opacity (0.45) on map",
+    "Bottom sheet shows 'Última posición conocida' banner for ghost buses",
+    "Ghost bus details display with 'Visto' badge and correct information",
+    "Theme toggle works correctly with ghost buses present",
+    "Line filter functionality works with mixed active/ghost buses",
+    "Map controls and navigation remain stable with ghost buses",
+    "Bus list panel opens and displays both active and ghost buses correctly",
+    "Ghost bus time stamps show 'hace X min' format correctly"
+  ],
+  "test_report_links": [
+    "/app/backend_test.py"
+  ],
+  "action_item_for_main_agent": "",
+  "updated_files": [
+    "/app/backend_test.py"
+  ],
+  "success_percentage": {
+    "backend": "100% - All 4 API tests passed including ghost bus functionality",
+    "frontend": "95% - All ghost bus UI features working, minor modal overlay interaction timeouts"
+  },
+  "should_call_test_agent_after_fix": "false",
+  "should_main_agent_test_itself": "true"
+}

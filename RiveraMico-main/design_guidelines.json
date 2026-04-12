@@ -1,0 +1,98 @@
+{
+  "theme": "dark",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "rationale": "For a real-time tracking application, clarity and instant legibility are paramount. A dark map with high-contrast signal colors (Volt Yellow, Signal Red, Electric Blue) allows fast visual parsing, even in motion. The bottom sheet and floating UI elements will use Crystal Glassmorphism to maintain context of the map underneath, adapting smoothly between dark and light map toggle.",
+  "typography": {
+    "fonts": {
+      "headings": "Cabinet Grotesk",
+      "body": "IBM Plex Sans",
+      "monospace": "IBM Plex Mono"
+    },
+    "hierarchy": {
+      "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+      "h2": "text-2xl md:text-3xl font-bold tracking-tight",
+      "h3": "text-xl md:text-2xl font-medium",
+      "h4": "text-lg md:text-xl font-medium",
+      "body": "text-base font-normal leading-relaxed",
+      "small": "text-sm tracking-wider uppercase"
+    },
+    "rules": [
+      "Avoid default Inter/Roboto",
+      "Use bold typography for primary bus stats (arrival times, line numbers)",
+      "Use monospace for raw coordinate data or IDs if exposed"
+    ]
+  },
+  "color_palette": {
+    "background_primary": "#0A0A0A",
+    "background_secondary": "#121212",
+    "glass_dark": "bg-black/60 backdrop-blur-xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]",
+    "glass_light": "bg-white/70 backdrop-blur-xl border-black/10 shadow-[0_8px_32px_rgba(0,0,0,0.12)]",
+    "primary_accent": "#CCFF00", 
+    "secondary_accent": "#007AFF", 
+    "danger_accent": "#FF3B30", 
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A3A3A3",
+    "text_dark_primary": "#121212", 
+    "text_dark_secondary": "#4A4A4A",
+    "rules": [
+      "Tint greys slightly with blue for cooler tone",
+      "Ensure text meets WCAG AA 4.5:1 contrast",
+      "Never use pure #000000 except for deep overlays"
+    ]
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Tailwind standard (p-4, p-6, p-8)",
+    "container_padding": "p-6",
+    "patterns": [
+      "Floating action buttons and filter dropdowns placed on top-right or top-left, away from the bottom sheet.",
+      "Bottom Sheet covers up to 40% height by default, expanding to 80% on user interaction.",
+      "Mobile-first responsive layout; everything happens over a full-screen map."
+    ],
+    "components": {
+      "bottom_sheet": "Fixed to bottom, rounded-t-[32px], glassmorphism background, subtle top border. Contains bus details.",
+      "floating_buttons": "Rounded-full, glassmorphism, right-aligned for one-handed thumb reach.",
+      "markers": "Custom HTML markers in MapLibre. Circle div with sharp outer border, and a nested rotating arrow icon based on heading. Use primary_accent for color."
+    }
+  },
+  "interactions": {
+    "hover_states": "All interactive elements should lift (-translate-y-1) and increase brightness/opacity on hover.",
+    "active_states": "Scale down (scale-95) for tactile feedback.",
+    "animations": "Use framer-motion for bottom sheet slide-up and MapLibre's built-in easing for marker movement."
+  },
+  "assets": {
+    "icons": {
+      "library": "lucide-react",
+      "instructions": "Use Lucide for navigation, filter, user location, and bus icons."
+    },
+    "map_styles": {
+      "dark": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+      "light": "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+    },
+    "images": [
+      {
+        "category": "splash_screen_background",
+        "url": "https://images.unsplash.com/photo-1768121496359-2aee4686673e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHwzfHx0cmFuc2l0JTIwYnVzJTIwZGFyayUyMG5pZ2h0JTIwY2l0eXxlbnwwfHx8fDE3NzU5NDUzNDJ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "A dark night city bus scene used for loading states."
+      },
+      {
+        "category": "empty_state_image",
+        "url": "https://images.unsplash.com/photo-1758965617971-615ea7c4f0bf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHwxfHx0cmFuc2l0JTIwYnVzJTIwZGFyayUyMG5pZ2h0JTIwY2l0eXxlbnwwfHx8fDE3NzU5NDUzNDJ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Dimly lit bus stop for no active buses found empty state."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Initialize MapLibre GL JS with full viewport (100vh, 100vw). Do NOT use Leaflet.",
+    "Provide a MapStyleToggleButton to switch between Carto Dark Matter and Carto Positron map styles.",
+    "Ensure UI components (bottom sheet, floating buttons) adapt dynamically between 'glass_dark' and 'glass_light' classes based on the active map theme.",
+    "Simulate real-time position updates every 12 seconds with moving MapLibre HTML markers.",
+    "Markers must include a directional arrow indicating movement heading. Rotate the arrow DOM element using inline CSS transform `rotate(Xdeg)` based on heading.",
+    "Implement a Bottom Sheet panel using Shadcn UI Sheet or framer-motion. It should display detailed bus info when a marker is clicked.",
+    "Include a Line Filter Dropdown floating over the map to show only specific bus lines.",
+    "Include a prominent 'Real-time Update Indicator' (like a pulsing green dot or spinner) to signify that live tracking is active.",
+    "Apply 'data-testid' to all interactive elements for testing (e.g. data-testid=\"map-theme-toggle\", data-testid=\"line-filter-dropdown\", data-testid=\"bus-marker-item\").",
+    "Use Cabinet Grotesk for headings and IBM Plex Sans for body text.",
+    "Utilize Crystal Glassmorphism (bg-black/60 + backdrop-blur-xl + border-white/10) for overlay panels to keep the map visible beneath.",
+    "Ensure map occupies the background statically, absolutely positioned behind the UI overlays. Control the overlays with z-index."
+  ]
+}

@@ -42,10 +42,10 @@ function loadCache() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) busCache = JSON.parse(raw);
-  } catch {}
+  } catch { }
 }
 function saveCache() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(busCache)); } catch {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(busCache)); } catch { }
 }
 
 // ---- Map ----
@@ -186,15 +186,20 @@ function createMarkerSVG(bus) {
   const color = bus.cached ? "#555" : getLineColor(bus.line);
   const textColor = !bus.cached && isDarkText(bus.line) ? "#0A0A0A" : "#FFF";
   const label = bus.bus;
-  const fontSize = label.length > 2 ? 10 : 12;
-  const size = 38;
-  const tipH = 10;
-  const cx = size / 2;
+  const fontSize = label.length > 2 ? 9 : 12;
+  const heading = bus.heading || 0;
+  const s = 48;
+  const cx = s / 2;
+  const r = 16;
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size + tipH}" viewBox="0 0 ${size} ${size + tipH}">
-    <defs><filter id="s${bus.bus}" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/></filter></defs>
-    <path d="M${cx},${size + tipH - 1} L${cx - 6},${size - 2} A${cx - 1},${cx - 1} 0 1,1 ${cx + 6},${size - 2} Z" fill="${color}" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" filter="url(#s${bus.bus})"/>
-    <text x="${cx}" y="${cx}" text-anchor="middle" dominant-baseline="central" fill="${textColor}" font-size="${fontSize}" font-weight="800" font-family="Outfit,system-ui,sans-serif">${label}</text>
+  // Design: static colored circle + static number + small white arrow rotating on top
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 ${s} ${s}">
+    <defs><filter id="sh${bus.bus}" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="rgba(0,0,0,0.5)"/></filter></defs>
+    <circle cx="${cx}" cy="${cx}" r="${r}" fill="${color}" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" filter="url(#sh${bus.bus})"/>
+    <g transform="rotate(${heading}, ${cx}, ${cx})">
+      <polygon points="${cx},${cx - r - 7} ${cx - 5},${cx - r + 2} ${cx + 5},${cx - r + 2}" fill="white" opacity="0.95"/>
+    </g>
+    <text x="${cx}" y="${cx + 1}" text-anchor="middle" dominant-baseline="central" fill="${textColor}" font-size="${fontSize}" font-weight="800" font-family="Outfit,system-ui,sans-serif">${label}</text>
   </svg>`;
 }
 
@@ -223,7 +228,10 @@ function updateMarkers() {
       if (pos.lng !== bus.lon || pos.lat !== bus.lat) {
         existing.setLngLat([bus.lon, bus.lat]);
       }
-      existing.getElement().style.opacity = bus.cached ? "0.55" : "1";
+      // Update SVG (heading may have changed)
+      const el = existing.getElement();
+      el.style.opacity = bus.cached ? "0.55" : "1";
+      el.innerHTML = createMarkerSVG(bus);
     } else {
       const el = document.createElement("div");
       el.className = "bus-marker-wrapper";
@@ -232,7 +240,7 @@ function updateMarkers() {
       el.innerHTML = createMarkerSVG(bus);
       el.addEventListener("click", (e) => { e.stopPropagation(); openBottomSheet(bus); });
 
-      const marker = new maplibregl.Marker({ element: el, anchor: "bottom" })
+      const marker = new maplibregl.Marker({ element: el, anchor: "center" })
         .setLngLat([bus.lon, bus.lat])
         .addTo(map);
       markers[bus.bus] = marker;

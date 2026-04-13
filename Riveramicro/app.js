@@ -294,7 +294,7 @@ function busRowHTML(bus) {
   return `<button class="bus-row" style="opacity:${opacity}" onclick='openBottomSheet(${JSON.stringify(bus)})'>
     <div class="bus-row-badge" style="background:${bg};color:${textColor}">${bus.line}</div>
     <div class="bus-row-info">
-      <div class="bus-row-name">Bus ${bus.bus} · ${bus.route_name || "Línea " + bus.line}</div>
+      <div class="bus-row-name">${bus.route_name || "Línea " + bus.line}</div>
       <div class="bus-row-stop">${bus.current_stop || "--"}</div>
     </div>
     ${bus.departure ? `<span class="bus-row-time">${bus.departure}</span>` : ""}
@@ -321,8 +321,8 @@ function openBottomSheet(bus) {
       <div class="sheet-bus-left">
         <div class="sheet-bus-badge" style="background:${bus.cached ? "#555" : color};color:${bus.cached ? "#FFF" : textColor}">${bus.line}</div>
         <div>
-          <div class="sheet-bus-title">Bus ${bus.bus}</div>
-          <div class="sheet-bus-route">${bus.route_name || "Línea " + bus.line}</div>
+          <div class="sheet-bus-title">${bus.route_name || "Línea " + bus.line}</div>
+          <div class="sheet-bus-route">Unidad: ${bus.bus}</div>
         </div>
       </div>
       <div class="sheet-line-badge" style="background:${color}20;color:${color};border:1px solid ${color}40">Línea ${bus.line}</div>

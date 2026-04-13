@@ -185,19 +185,25 @@ function buildFilterPanel() {
 function createMarkerSVG(bus) {
   const color = bus.cached ? "#555" : getLineColor(bus.line);
   const textColor = !bus.cached && isDarkText(bus.line) ? "#0A0A0A" : "#FFF";
-  const label = bus.bus;
-  const fontSize = label.length > 2 ? 9 : 12;
+  const label = bus.line; // Show LINE number on marker
+  const fontSize = label.length > 2 ? 9 : 13;
   const heading = bus.heading || 0;
-  const s = 48;
+  const s = 50;
   const cx = s / 2;
-  const r = 16;
+  const r = 14;
+  const tail = 9;
 
-  // Design: static colored circle + static number + small white arrow rotating on top
+  // Teardrop/pin shape: circle fused with pointed tail, all one shape
+  // Rotates entirely by heading; text counter-rotated to stay upright
+  const tipY = cx - r - tail;
+  const lx = cx - 5.5;
+  const rx = cx + 5.5;
+  const jy = cx - r + 3;
+
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 ${s} ${s}">
-    <defs><filter id="sh${bus.bus}" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="rgba(0,0,0,0.5)"/></filter></defs>
-    <circle cx="${cx}" cy="${cx}" r="${r}" fill="${color}" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" filter="url(#sh${bus.bus})"/>
-    <g transform="rotate(${heading}, ${cx}, ${cx})">
-      <polygon points="${cx},${cx - r - 7} ${cx - 5},${cx - r + 2} ${cx + 5},${cx - r + 2}" fill="white" opacity="0.95"/>
+    <defs><filter id="sh${bus.bus}" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="1" stdDeviation="2.5" flood-color="rgba(0,0,0,0.5)"/></filter></defs>
+    <g transform="rotate(${heading}, ${cx}, ${cx})" filter="url(#sh${bus.bus})">
+      <path d="M${cx},${tipY} L${lx},${jy} A${r},${r} 0 1,0 ${rx},${jy} Z" fill="${color}" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linejoin="round"/>
     </g>
     <text x="${cx}" y="${cx + 1}" text-anchor="middle" dominant-baseline="central" fill="${textColor}" font-size="${fontSize}" font-weight="800" font-family="Outfit,system-ui,sans-serif">${label}</text>
   </svg>`;
@@ -286,10 +292,10 @@ function busRowHTML(bus) {
   const opacity = bus.cached ? "0.55" : "1";
   const bg = bus.cached ? "#444" : color;
   return `<button class="bus-row" style="opacity:${opacity}" onclick='openBottomSheet(${JSON.stringify(bus)})'>
-    <div class="bus-row-badge" style="background:${bg};color:${textColor}">${bus.bus}</div>
+    <div class="bus-row-badge" style="background:${bg};color:${textColor}">${bus.line}</div>
     <div class="bus-row-info">
-      <div class="bus-row-name">Coche ${bus.bus} · L${bus.line}</div>
-      <div class="bus-row-stop">${bus.current_stop || bus.route_name || "--"}</div>
+      <div class="bus-row-name">Bus ${bus.bus} · ${bus.route_name || "Línea " + bus.line}</div>
+      <div class="bus-row-stop">${bus.current_stop || "--"}</div>
     </div>
     ${bus.departure ? `<span class="bus-row-time">${bus.departure}</span>` : ""}
   </button>`;
@@ -313,9 +319,9 @@ function openBottomSheet(bus) {
   document.getElementById("sheet-content").innerHTML = `
     <div class="sheet-bus-header">
       <div class="sheet-bus-left">
-        <div class="sheet-bus-badge" style="background:${bus.cached ? "#555" : color};color:${bus.cached ? "#FFF" : textColor}">${bus.bus}</div>
+        <div class="sheet-bus-badge" style="background:${bus.cached ? "#555" : color};color:${bus.cached ? "#FFF" : textColor}">${bus.line}</div>
         <div>
-          <div class="sheet-bus-title">Coche ${bus.bus}</div>
+          <div class="sheet-bus-title">Bus ${bus.bus}</div>
           <div class="sheet-bus-route">${bus.route_name || "Línea " + bus.line}</div>
         </div>
       </div>

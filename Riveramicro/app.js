@@ -18,7 +18,14 @@ const LINE_COLORS = {
   "13": "#FFCC00", "14": "#FFD60A", "26": "#00C7BE",
 };
 
-function getLineColor(line) { return LINE_COLORS[line] || "#888"; }
+function getLineColor(line) {
+  if (LINE_COLORS[line]) return LINE_COLORS[line];
+  // Auto-generate a color for unknown lines based on line number
+  const hues = [200, 340, 160, 280, 60, 320, 120, 20, 240, 100, 300, 40, 180];
+  const idx = parseInt(line, 10) || line.charCodeAt(0);
+  const hue = hues[idx % hues.length];
+  return `hsl(${hue}, 70%, 55%)`;
+}
 function isDarkText(line) { return ["5", "13", "14"].includes(line); }
 
 // ---- State ----
@@ -139,15 +146,40 @@ function updateLastTime() {
 }
 
 // ---- Filter Panel ----
+function getLineLabel(line) {
+  // Find a bus with this line and extract a short route name
+  const bus = allBuses.find(b => b.line === line && b.route_name);
+  if (!bus || !bus.route_name) return line;
+  const name = bus.route_name;
+  // Split by " - " and get the most descriptive part
+  const parts = name.split(/\s*-\s*/).map(p => p.trim()).filter(Boolean);
+
+  // Pick the part that isn't generic ("Centro", "Esc XX")
+  let label = parts.find(p => !/^centro$/i.test(p)) || parts[0] || line;
+
+  // Shorten common patterns
+  label = label.replace(/^Paso de (la )?/i, "P.");
+  label = label.replace(/^Puerto /i, "Pto ");
+  label = label.replace(/^Cerro /i, "Crro ");
+  label = label.replace(/^Esc \d+\s*(x\s*)?/i, "");
+  label = label.replace(/^La Estiba[\s-]*/i, "");
+  label = label.replace(/ del /gi, " d/");
+  label = label.replace(/ de la /gi, " d/");
+  label = label.replace(/ de /gi, " d/");
+  label = label.trim();
+
+  // Truncate to fit in button
+  if (label.length > 11) label = label.substring(0, 10).trim() + ".";
+  return label;
+}
+
 function buildFilterPanel() {
   const panel = document.getElementById("filter-panel");
   const lines = [...new Set(allBuses.map(b => b.line).filter(Boolean))].sort((a, b) => +a - +b);
   const all = ["all", ...lines];
 
-  // Only rebuild if lines changed
   const key = all.join(",");
   if (panel.dataset.key === key) {
-    // Just update active states
     panel.querySelectorAll(".filter-btn").forEach(btn => {
       const line = btn.dataset.line;
       const isActive = activeFilter === line;
@@ -167,7 +199,13 @@ function buildFilterPanel() {
     const btn = document.createElement("button");
     btn.className = "filter-btn";
     btn.dataset.line = line;
-    btn.textContent = line === "all" ? "Todas" : `L${line}`;
+
+    if (line === "all") {
+      btn.textContent = "Todas";
+    } else {
+      const routeLabel = getLineLabel(line);
+      btn.innerHTML = `<span class="filter-num">${line}</span><span class="filter-name">${routeLabel}</span>`;
+    }
     btn.onclick = () => { activeFilter = line; updateUI(); updateMarkers(); };
 
     const isActive = activeFilter === line;
@@ -295,7 +333,7 @@ function busRowHTML(bus) {
     <div class="bus-row-badge" style="background:${bg};color:${textColor}">${bus.line}</div>
     <div class="bus-row-info">
       <div class="bus-row-name">${bus.route_name || "Línea " + bus.line}</div>
-      <div class="bus-row-stop">${bus.current_stop || "--"}</div>
+      <div class="bus-row-stop">Bus ${bus.bus} · ${bus.current_stop || "--"}</div>
     </div>
     ${bus.departure ? `<span class="bus-row-time">${bus.departure}</span>` : ""}
   </button>`;
@@ -322,7 +360,7 @@ function openBottomSheet(bus) {
         <div class="sheet-bus-badge" style="background:${bus.cached ? "#555" : color};color:${bus.cached ? "#FFF" : textColor}">${bus.line}</div>
         <div>
           <div class="sheet-bus-title">${bus.route_name || "Línea " + bus.line}</div>
-          <div class="sheet-bus-route">Unidad: ${bus.bus}</div>
+          <div class="sheet-bus-route">Bus ${bus.bus}</div>
         </div>
       </div>
       <div class="sheet-line-badge" style="background:${color}20;color:${color};border:1px solid ${color}40">Línea ${bus.line}</div>

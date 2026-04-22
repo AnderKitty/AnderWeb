@@ -196,22 +196,30 @@ h6 {
 /* ---- Filter Panel ---- */
 #filter-panel {
   position: absolute;
-  right: 12px;
-  top: 72px;
+  right: 8px;
+  top: 68px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   z-index: 40;
+  max-height: calc(100dvh - 140px);
+  overflow-y: auto;
+  padding-bottom: 8px;
+}
+
+#filter-panel::-webkit-scrollbar {
+  width: 0;
 }
 
 .filter-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  min-width: 48px;
+  padding: 4px 8px;
+  border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  gap: 0px;
   font-weight: 700;
   cursor: pointer;
   border: 1.5px solid var(--border);
@@ -221,14 +229,30 @@ h6 {
   color: var(--text-2);
   transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
   -webkit-tap-highlight-color: transparent;
+  font-size: 11px;
+  line-height: 1.1;
 }
 
 .filter-btn:active {
   transform: scale(0.92);
 }
 
-.filter-btn.active {
-  border-width: 1.5px;
+.filter-num {
+  font-size: 12px;
+  font-weight: 800;
+  font-family: 'Outfit', system-ui;
+  line-height: 1.2;
+}
+
+.filter-name {
+  font-size: 7px;
+  font-weight: 600;
+  opacity: 0.85;
+  white-space: nowrap;
+  max-width: 52px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 /* ---- Bus List Toggle ---- */

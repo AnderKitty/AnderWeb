@@ -1,88 +1,295 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ander :3</title>
-    <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="./MediaQuery.css">
-            <!--Fuentes de Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Pacifico&display=swap" rel="stylesheet">
-    <!-- Meta etiquetas Open Graph para la vista previa en redes sociales -->
-    <meta property="og:title" content="Ander<3">
-    <meta property="og:description" content="Ricotero de corazon, primero el dota despues la vida">
-    <meta property="og:image" content="https://i.pinimg.com/564x/5c/3a/3a/5c3a3a4cec5c6206d31089e98e12cb5e.jpg">
-    <meta property="og:url" content="https://anderkitty.com">
-
-    <!-- Favicon en la pestaña del navegador -->
-    <link rel="icon" href="https://i.pinimg.com/564x/5c/3a/3a/5c3a3a4cec5c6206d31089e98e12cb5e.jpg" type="image/jpeg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ander&lt;3 · anderkitty.pink</title>
+<meta name="description" content="Linux · Backend & scripting · Ciberseguridad — la web personal de Ander.">
+<meta name="theme-color" content="#0a0714">
+<meta property="og:title" content="Ander<3">
+<meta property="og:description" content="Linux · Backend & scripting · Ciberseguridad">
+<meta property="og:url" content="https://anderkitty.pink">
+<meta property="og:image" content="https://anderkitty.pink/ander.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="card small-img">
-            <div class="card-img-container">
-                <img src="imagenes/Ander-removebg-preview.png" class="card-img" alt="Ander">
-            </div>
-            <h2>Desarrollo en Linux</h2>
-            <p>Soy experimentado con mas de 8 años en entornos de Linux en varias distribuciones como: Arch, Debian, Kali y un poco de Alpine.</p>
-        </div>
-        <div class="card card-main">
-            <img src="./imagenes/2f6b7e67e19ccb59795e95b3369d5c8b.webp" alt="Imagen de Presentación">
-            <h2>Ander</h2>
-            <h3>19 años</h3>
-            <p>Hola, soy Anderson. Me gustan los simuladores de conducción, el rock, y soy aficionado a la informática. Estoy estudiando para formarme como tecnico en informatica</p>
-        </div>
-        <div class="card small-img">
-            <img src="./imagenes/2Ander-removebg-preview.png" alt="Programación">
-            <h2>Programación</h2>
-            <p>Tengo buenas bases en programación y en el uso de herramientas y tecnologías. Mi lenguaje con mayor conocimiento es Python/Lua y tambien me gusta programar en frontend.</p>
-        </div>
+
+<!-- fondo animado: estrellas + fugaces (canvas) -->
+<canvas id="cielo" aria-hidden="true"></canvas>
+<div class="nebulosa a" aria-hidden="true"></div>
+<div class="nebulosa b" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#inicio">Ander<span class="corazon">&lt;3</span></a>
+    <nav class="links" id="menu" aria-label="Navegación principal">
+      <a href="#inicio" class="active">Inicio</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#trayectoria">Trayectoria</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-der">
+      <a class="btn btn-primario chico" href="mailto:andergds0@gmail.com">Escríbeme</a>
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
     </div>
+  </div>
+</header>
 
-    <div class="spacer"></div>
+<main>
 
-    <div class="music-section">
-        <h2>Mi Música Favorita</h2>
-        <div class="spotify-container">
-            <iframe 
-                style="border-radius:12px" 
-                src="https://open.spotify.com/embed/track/5agpMV7rvg7Hf8IiX5kQXe?utm_source=generator" 
-                width="90%" 
-                height="120" 
-                frameBorder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
-            </iframe>
-        </div>
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="cont hero-grid">
+    <div>
+      <h1 data-hero style="--d:.05s">Hola, soy <span class="grad">Ander</span></h1>
+      <p class="hero-tags" data-hero style="--d:.2s" aria-label="Linux · Backend & scripting · Ciberseguridad"><span id="typeline" aria-hidden="true">Linux · Backend &amp; scripting · Ciberseguridad</span><span class="caret" aria-hidden="true"></span></p>
+      <p class="hero-bio" data-hero style="--d:.35s">
+        Tengo 19 años y llevo más de 8 metido en el mundo Linux. Me estoy formando
+        como técnico en informática, estudio ciberseguridad por mi cuenta y escribo
+        herramientas en Python y Lua. Cuando no estoy programando ando en simuladores
+        de conducción o escuchando rock.
+      </p>
+      <div class="hero-btns" data-hero style="--d:.5s">
+        <a class="btn btn-primario" href="#proyectos">Ver proyectos</a>
+        <a class="btn btn-fantasma" href="#trayectoria">Sobre mí</a>
+      </div>
     </div>
-
-    <div class="social-section">
-        <h2>Mis Redes Sociales</h2>
-        <div class="social-links">
-            <a href="https://instagram.com/anderkitty" target="_blank" class="social-link">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
-                <span>@anderkitty</span>
-            </a>
-            <a href="https://discord.com/users/anderkitty" target="_blank" class="social-link">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
-                <span>anderkitty</span>
-            </a>
-            <a href="mailto:andergds0@gmail.com" class="social-link">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png" alt="Gmail">
-                <span>andergds0@gmail.com</span>
-            </a>
-            <a href="https://steamcommunity.com/id/AnderKitty/" target="_blank" class="social-link">
-                <img src="https://cdn-icons-png.flaticon.com/128/15466/15466225.png" alt="Steam">
-                <span>anderkitty</span>
-            </a>
-        </div>
+    <div class="foto-col" data-hero style="--d:.3s">
+      <div class="marco">
+        <img src="ander.webp" alt="Ander — gatito con peluca y buzo rojo" width="335" height="366">
+      </div>
     </div>
+  </div>
+</section>
 
-    <script src="./script.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="./galaxy.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<!-- ============ 01 SKILLS ============ -->
+<section class="seccion" id="skills">
+  <div class="cont">
+    <div class="cab reveal">
+      <span class="etiqueta">01 — skills</span>
+      <h2>Lo que sé hacer</h2>
+    </div>
+    <div class="skills-grid" data-stagger>
+      <article class="card reveal">
+        <h3>Linux</h3>
+        <p>Más de 8 años de experiencia en distintos entornos y distribuciones.
+           Administración, personalización y resolución de problemas del día a día.</p>
+        <div class="tags">
+          <span class="tag">Arch</span>
+          <span class="tag">Debian</span>
+          <span class="tag">Kali</span>
+          <span class="tag">Alpine</span>
+        </div>
+      </article>
+      <article class="card reveal">
+        <h3>Backend &amp; scripting</h3>
+        <p>Python y Lua son mis lenguajes principales: scripts, automatización y
+           herramientas propias. Ahora estoy aprendiendo Go. También tengo algo de
+           experiencia en frontend.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Lua</span>
+          <span class="tag">Go · aprendiendo</span>
+        </div>
+      </article>
+      <article class="card reveal">
+        <h3>Ciberseguridad</h3>
+        <p>La estudio de forma independiente: fundamentos, laboratorios y
+           herramientas sobre Kali Linux.</p>
+        <div class="tags">
+          <span class="tag">Autodidacta</span>
+          <span class="tag">Kali Linux</span>
+        </div>
+      </article>
+      <article class="card reveal">
+        <h3>Formación</h3>
+        <p>Estudiando para técnico en informática. Aprendiendo algo nuevo cada
+           semana, dentro y fuera de clase.</p>
+        <div class="tags">
+          <span class="tag">Técnico en informática</span>
+          <span class="tag">En curso</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 PROYECTOS ============
+     Las portadas son CSS puro (radar / recorrido de bus / terminal).
+     Si algún día querés usar una captura real, reemplazá el
+     <div class="proyecto-thumb ..."> por:
+     <img class="proyecto-img" src="capturas/mi-proyecto.png" alt="...">
+     y agregá en styles.css:
+     .proyecto-img{width:100%;height:150px;object-fit:cover;display:block;border-bottom:1px solid var(--border)}
+-->
+<section class="seccion" id="proyectos">
+  <div class="cont">
+    <div class="cab cab-fila reveal">
+      <div>
+        <span class="etiqueta">02 — proyectos</span>
+        <h2>Proyectos</h2>
+      </div>
+      <span class="nota">// más proyectos en camino</span>
+    </div>
+    <div class="proyectos-grid" data-stagger>
+      <a class="proyecto reveal" href="https://radar.anderkitty.pink" target="_blank" rel="noopener">
+        <div class="proyecto-thumb" aria-hidden="true">
+          <div class="radar">
+            <i class="anillo"></i><i class="anillo chico"></i>
+            <span class="blip b1"></span><span class="blip b2"></span><span class="blip b3"></span>
+          </div>
+        </div>
+        <div class="proyecto-cuerpo">
+          <h3>Zarpa <span class="flecha">↗</span></h3>
+          <p>Observatorio OSINT pasivo de Uruguay: mapea la superficie de exposición
+             del país — servicios abiertos, marca y modelo de dispositivos, criticidad —
+             y publica solo los agregados. Mira, nunca toca.</p>
+          <div class="tags">
+            <span class="tag">go</span>
+            <span class="tag">javascript</span>
+            <span class="tag">ciberseguridad</span>
+          </div>
+        </div>
+      </a>
+      <a class="proyecto reveal" href="https://anderkitty.pink/Riveramicro" target="_blank" rel="noopener">
+        <div class="proyecto-thumb" aria-hidden="true">
+          <div class="ruta">
+            <span class="parada p1"></span><span class="parada p2"></span>
+            <span class="parada p3"></span><span class="parada p4"></span>
+            <span class="busito"></span>
+          </div>
+        </div>
+        <div class="proyecto-cuerpo">
+          <h3>Riverabus <span class="flecha">↗</span></h3>
+          <p>Mapa del transporte urbano de Rivera: líneas, recorridos y horarios
+             de los ómnibus de la ciudad, todo en un solo lugar.</p>
+          <div class="tags">
+            <span class="tag">web</span>
+            <span class="tag">transporte</span>
+          </div>
+        </div>
+      </a>
+      <article class="proyecto reveal">
+        <div class="proyecto-thumb thumb-rayas">
+          <span>~ $ próximamente<span class="cursor" aria-hidden="true"></span></span>
+        </div>
+        <div class="proyecto-cuerpo">
+          <h3>Próximamente</h3>
+          <p>Espacio reservado — el siguiente proyecto se está cocinando.</p>
+          <div class="tags">
+            <span class="tag">en camino</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 TRAYECTORIA ============ -->
+<section class="seccion" id="trayectoria">
+  <div class="cont">
+    <div class="cab reveal">
+      <span class="etiqueta">03 — trayectoria</span>
+      <h2>Mi camino</h2>
+    </div>
+    <div class="tl" data-stagger>
+      <div class="tl-item reveal">
+        <span class="tl-anio">2018</span>
+        <div class="tl-cuerpo">
+          <h3>Primeros pasos en Linux</h3>
+          <p>Instalé mi primera distro y ya no hubo vuelta atrás.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <span class="tl-anio">2022</span>
+        <div class="tl-cuerpo">
+          <h3>Primeros scripts en Python y Lua</h3>
+          <p>Empecé a automatizar cosas y a programar en serio.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <span class="tl-anio">2024</span>
+        <div class="tl-cuerpo">
+          <h3>Formación como técnico en informática</h3>
+          <p>Estudios formales para respaldar lo aprendido por mi cuenta.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <span class="tl-anio">2026</span>
+        <div class="tl-cuerpo">
+          <h3>Rediseño de anderkitty.pink</h3>
+          <p>Nueva versión de esta web, con más secciones en camino.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 MÚSICA ============
+     Para cambiar la canción/playlist: en Spotify → Compartir → Insertar,
+     copiá la URL del iframe y pegala en src.
+     Si es una playlist, cambiá height="152" por height="352".
+-->
+<section class="seccion" id="musica">
+  <div class="cont">
+    <div class="cab reveal">
+      <span class="etiqueta">04 — música</span>
+      <h2>Mi música favorita</h2>
+    </div>
+    <div class="musica-caja reveal">
+      <iframe src="https://open.spotify.com/embed/track/5agpMV7rvg7Hf8IiX5kQXe?utm_source=generator"
+              height="152" loading="lazy" title="Spotify — mi música favorita"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 CONTACTO ============ -->
+<section class="seccion contacto" id="contacto">
+  <div class="cont">
+    <div class="reveal">
+      <span class="etiqueta">05 — contacto</span>
+      <h2>¿Hablamos?</h2>
+      <p class="contacto-txt">Encuéntrame en cualquiera de estas redes, o mándame un correo directamente.</p>
+      <a class="btn btn-primario" href="mailto:andergds0@gmail.com">andergds0@gmail.com</a>
+    </div>
+    <div class="redes-grid" data-stagger>
+      <a class="red reveal" href="https://instagram.com/anderkitty" target="_blank" rel="noopener">
+        <span class="red-nombre">Instagram</span>
+        <span class="red-user">@anderkitty</span>
+      </a>
+      <a class="red reveal" href="https://discord.com/users/anderkitty" target="_blank" rel="noopener">
+        <span class="red-nombre">Discord</span>
+        <span class="red-user">anderkitty</span>
+      </a>
+      <a class="red reveal" href="https://steamcommunity.com/id/AnderKitty/" target="_blank" rel="noopener">
+        <span class="red-nombre">Steam</span>
+        <span class="red-user">anderkitty</span>
+      </a>
+      <a class="red reveal" href="https://github.com/anderkitty" target="_blank" rel="noopener">
+        <span class="red-nombre">GitHub</span>
+        <span class="red-user">anderkitty</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="cont footer-inner">
+    <span>anderkitty.pink — <span id="anio">2026</span></span>
+    <span>hecho con <span class="latido">&lt;3</span> en Linux</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
-
